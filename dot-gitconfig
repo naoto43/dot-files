@@ -1,0 +1,11 @@
+[user]
+	email = toona@seesaa.co.jp
+	name = Naoto ISHIKAWA
+[color]
+	ui = true
+[push]
+	default = tracking
+[core]
+	pager = less -FRSX
+[diff]
+	wordRegex = [@$%]*[[:alnum:]_]+|[^\n]

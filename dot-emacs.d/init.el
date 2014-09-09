@@ -9,12 +9,12 @@
 ;;
 
 (defvar system-load-path load-path)
-(setq my-load-path '("~/.emacs-prefix/share/emacs/site-lisp"))
+(setq my-load-path '("~/.emacs.d/share/emacs/site-lisp"))
 
 (setq load-path (append my-load-path system-load-path))
 
-(setenv "RUBYLIB" (concat (getenv "RUBYLIB") ":" (expand-file-name "~/.emacs-prefix/lib/ruby/site_ruby")))
-(setenv "PATH"    (concat (getenv "PATH") ":" (expand-file-name "~/.emacs-prefix/bin")))
+(setenv "RUBYLIB" (concat (getenv "RUBYLIB") ":" (expand-file-name "~/.emacs.d/lib/ruby/site_ruby")))
+(setenv "PATH"    (concat (getenv "PATH") ":" (expand-file-name "~/.emacs.d/bin")))
 
 ;;
 ;; lang
@@ -130,21 +130,21 @@
 ;;
 ;; sdic
 ;;
-;; [toona@toona ~/tmp/sdic-2.1.3 ] ./configure --prefix ~/.emacs-prefix && make install && make dict && make install-dict
+;; [toona@toona ~/tmp/sdic-2.1.3 ] ./configure --prefix ~/.emacs.d && make install && make dict && make install-dict
 ;; dict は prefix指定できないっぽいので local/share/dict のものをコピー。また、gene についてはインストーラがおかしいので 
 ;; 展開した gene.txt を euc にして cat gene.txt| /usr/bin/perl contrib/gene.perl > gene.sdic 
 ;;
 (global-set-key "\C-cw" 'sdic-describe-word)
 (setq sdic-window-height 10 sdic-disable-select-window t)
-(setq sdic-eiwa-dictionary-list '((sdicf-client "~/.emacs-prefix/share/dict/gene.sdic"))
-      sdic-waei-dictionary-list '((sdicf-client "~/.emacs-prefix/share/dict/jedict.sdic"
+(setq sdic-eiwa-dictionary-list '((sdicf-client "~/.emacs.d/share/dict/gene.sdic"))
+      sdic-waei-dictionary-list '((sdicf-client "~/.emacs.d/share/dict/jedict.sdic"
 						(add-keys-to-headword t))))
 (load-library "sdic")
 
 ;;
 ;; migemo
 ;;
-;; [toona@toona ~/tmp/migemo-0.40 ] ./configure --prefix=~/.emacs-prefix --with-rubydir=~/.emacs-prefix/lib/ruby/site_ruby
+;; [toona@toona ~/tmp/migemo-0.40 ] ./configure --prefix=~/.emacs.d --with-rubydir=~/.emacs.d/lib/ruby/site_ruby
 ;;
 ;; cent4 の 1.8.1 でうごきません。以下が必要
 ;; 

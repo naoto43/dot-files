@@ -7,10 +7,14 @@ echo "Loading $HOME/.zshrc"
 #
 # PROMPT
 # 
-PROMPT="[%n@%m %4~ ] "
+if [ -d /sys/class/net/docker0 ] && [ ! -e /usr/bin/docker ]; then
+  _DOCKER=.docker
+fi
+
+PROMPT="[%n@%m$_DOCKER %4~ ] "
 SPROMPT='zsh: replace '\''%R'\'' to '\''%r'\'' ? [Yes/No/Abort/Edit] '
 if [ $UID = 0 ]; then
-	PROMPT="%BROOT%b@%l'%U%m%u[0]:%4~%# "
+	PROMPT="%BROOT%b@%l'%U%m$_DOCKER%u[0]:%4~%# "
 fi
 
 PROMPT_DEFAULT="$PROMPT"

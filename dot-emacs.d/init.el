@@ -144,7 +144,7 @@
 ;;
 ;; migemo
 ;; 
-;; rpm -Uvh ftp://fr.rpmfind.net/linux/fedora/linux/development/rawhide/x86_64/os/Packages/c/cmigemo-1.3-0.11.date20110227.fc22.2.x86_64.rpm
+;; sudo rpm -Uvh ftp://fr.rpmfind.net/linux/fedora/linux/releases/19/Everything/x86_64/os/Packages/c/cmigemo-1.3-0.10.date20110227.fc19.1.x86_64.rpm
 ;;
 
 (require 'migemo)

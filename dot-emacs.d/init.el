@@ -143,15 +143,18 @@
 
 ;;
 ;; migemo
-;;
-;; [toona@toona ~/tmp/migemo-0.40 ] ./configure --prefix=~/.emacs.d --with-rubydir=~/.emacs.d/lib/ruby/site_ruby
-;;
-;; cent4 の 1.8.1 でうごきません。以下が必要
 ;; 
-;; yum remove ruby ruby-libs
-;; cd /etc/yum.repos.d/ && wget http://dev.centos.org/centos/4/CentOS-Testing.repo && yum --enablerepo=c4-testing install  ruby
+;; rpm -Uvh ftp://fr.rpmfind.net/linux/fedora/linux/development/rawhide/x86_64/os/Packages/c/cmigemo-1.3-0.11.date20110227.fc22.2.x86_64.rpm
 ;;
-(load "migemo")
+
+(require 'migemo)
+(setq migemo-command "cmigemo")
+(setq migemo-options '("-q" "--emacs"))
+(setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
+(setq migemo-user-dictionary nil)
+(setq migemo-regex-dictionary nil)
+(setq migemo-coding-system 'utf-8-unix)
+(migemo-init)
 
 ;;
 ;; svn

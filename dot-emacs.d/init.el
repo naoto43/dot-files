@@ -168,25 +168,6 @@
 
 (load-library "magit")
 
-
-;;
-;; wanderlust
-;;
-;; apel,semi,flim,lsdb をインストールする
-;; wl インストール時には WL-CFG に apel,semi,flim のパスを追加した上で make すること
-;;
-
-(setq wl-load-path '("/usr/local/share/emacs/site-lisp/wl"
-                     "/usr/local/share/emacs/site-lisp/apel"
-                     "/usr/local/share/emacs/site-lisp/semi"
-                     "/usr/local/share/emacs/site-lisp/flim"
-                     "/usr/local/share/emacs/site-lisp/lsdb"
-                     ))
-(setq load-path (append load-path wl-load-path))
-(autoload 'mime-setup "mime-setup" t)
-(autoload 'wl "wl" "Wanderlust" t)
-(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
-
 ;; ----------------------------------------------------------------------
 ;; if file bigin "#!" +x - Script with shebang line
 ;; ----------------------------------------------------------------------

@@ -1,0 +1,330 @@
+#
+# zshrc.itself
+#
+# loaded from .zshrc
+#
+
+#
+# PROMPT
+# 
+if [ -d /sys/class/net/docker0 ] && [ ! -e /usr/bin/docker ]; then
+  _DOCKER=.d
+fi
+ 
+PROMPT="[%n@%m$_DOCKER %4~ ] "
+SPROMPT='zsh: replace '\''%R'\'' to '\''%r'\'' ? [Yes/No/Abort/Edit] '
+if [ $UID = 0 ]; then
+	PROMPT="%BROOT%b@%l'%U%m$_DOCKER%u[0]:%4~%# "
+fi
+
+PROMPT_DEFAULT="$PROMPT"
+RPROMPT_DEFAULT="$RPROMPT"
+
+
+TERM=xterm
+
+export PERL_BADLANG=0
+export PERLDOC_PAGER=${PAGER}
+export RUBYLIB=/home/toona/local/lib/ruby/site_ruby
+
+path=(/bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin)
+path=($path /usr/libexec /usr/local/libexec)
+path=($path $HOME/bin)
+
+path=($path /usr/local/sysutil)
+path=($path /usr/ucb /usr/etc)	# for SunOS
+
+# apache
+if [ -x /usr/local/apache/bin ]; then
+	path=($path /usr/local/apache/bin)
+fi
+
+# namazu
+if [ -x /usr/local/namazu/bin ];then
+	path=($path /usr/local/namazu/bin)
+fi
+
+# samba
+if [ -x /usr/local/samba/bin ]; then
+	path=($path /usr/local/samba/bin)
+fi
+
+# ssl
+if [ -x /usr/local/ssld ]; then
+	path=($path /usr/local/ssl/bin)
+fi
+
+# pg
+if [ -x /usr/local/pgsql/bin ]; then
+	path=($path /usr/local/pgsql/bin)
+fi
+
+# mysql
+if [ -x /usr/local/mysql/bin ]; then
+	path=($path /usr/local/mysql/bin /usr/local/mysql/libexec)
+fi
+
+# qmail
+if [ -x /var/qmail/bin ]; then
+	path=($path /var/qmail/bin)
+fi
+
+
+### Select OS type
+
+case $OSTYPE {
+  sunos*)	export SYSTEM=sun ;;
+  solaris*)	export SYSTEM=sol ;;
+  irix*)	export SYSTEM=sgi ;;
+  osf*)		export SYSTEM=dec ;;
+  linux*)	export SYSTEM=gnu ;;
+  freebsd*)	export SYSTEM=bsd ;;
+  darwin*)	export SYSTEM=darwin ;;    # MacOSX
+}
+
+# ZDOTDIR は zsh の個人用設定ファイルを探すディレクトリを指定する
+
+if [ -z $ZDOTDIR ]; then
+  export ZDOTDIR=$HOME
+fi
+
+# 切り分けた設定ファイルを読み込むディレクトリを指定する
+
+export ZUSERDIR=$ZDOTDIR/.zsh
+
+
+### System specific environment
+
+# 環境変数（PATH など）の OS 別設定ファイルを読み込む
+
+export EDITOR=vi
+
+# lang
+export LANG=ja_JP.UTF-8
+#export LANG=C
+#export LANGUAGE = ja_JP
+export LC_CTYPE=UTF-8
+export LC_ALL=C
+
+# man path
+export MANPATH="/usr/share/man:/usr/X11R6/man:/usr/local/man:/var/qmail/man:$HOME/man:."
+
+if [ $UID = 0 ]; then
+  unset HISTFILE
+  SAVEHIST=0
+fi
+
+
+umask 022
+
+#
+# keybindings
+#
+
+# 端末の設定：Ctrl+H に 1 文字削除、Ctrl+C に割り込み、Ctrl+Z にサスペンド
+stty erase '^H'
+stty intr '^C'
+stty susp '^Z'
+
+# zsh のキーバインドを環境変数 EDITOR に関わらず emacs 風にする
+bindkey -e				# EDITOR=vi -> bindkey -v
+#bindkey -v                              # EDITOR=vi -> bindkey -v
+
+# ・行全てではなく、カーソル位置から前方だけを削除するように変更
+# ・Ctrl+Space によるマーク位置からカーソル位置までを消すように変更
+# ・Esc+H で、カーソル前の単語を削除（backward-kill-word より多めに消す）
+# ・Esc+. で、コマンドラインの最後の引数を繰り返し挿入する
+
+bindkey '^U' backward-kill-line		# override kill-whole-line
+bindkey '^W' kill-region		# override backward-kill-word
+bindkey '^[h' vi-backward-kill-word	# override run-help
+bindkey '^[.' copy-prev-word		# override insert-last-word
+
+
+#
+# options
+#
+# 複数の zsh を同時に使う時など history ファイルに上書きせず追加する
+setopt append_history
+
+# 指定したコマンド名がなく、ディレクトリ名と一致した場合 cd する
+setopt auto_cd
+
+# 補完候補が複数ある時に、一覧表示する
+setopt auto_list
+
+# 補完キー（Tab, Ctrl+I) を連打するだけで順に補完候補を自動で補完する
+setopt auto_menu
+
+# カッコの対応などを自動的に補完する
+setopt auto_param_keys
+
+# ディレクトリ名の補完で末尾の / を自動的に付加し、次の補完に備える
+setopt auto_param_slash
+
+# 最後がディレクトリ名で終わっている場合末尾の / を自動的に取り除く
+#setopt auto_remove_slash
+
+# サスペンド中のプロセスと同じコマンド名を実行した場合はリジュームする
+#setopt auto_resume
+
+# ビープ音を鳴らさないようにする
+setopt NO_beep
+
+# {a-c} を a b c に展開する機能を使えるようにする
+setopt brace_ccl
+
+# 内部コマンドの echo を BSD 互換にする
+setopt bsd_echo
+
+# シンボリックリンクは実体を追うようになる
+# setopt chase_links
+
+# 既存のファイルを上書きしないようにする
+#setopt clobber
+
+# コマンドのスペルチェックをする
+setopt correct
+
+# コマンドライン全てのスペルチェックをする
+#setopt correct_all
+
+# =command を command のパス名に展開する
+setopt equals
+
+# ファイル名で #, ~, ^ の 3 文字を正規表現として扱う
+setopt extended_glob
+
+# zsh の開始・終了時刻をヒストリファイルに書き込む
+#setopt extended_history
+
+# Ctrl+S/Ctrl+Q によるフロー制御を使わないようにする
+setopt NO_flow_control
+
+# 各コマンドが実行されるときにパスをハッシュに入れる
+#setopt hash_cmds
+
+# 直前と同じコマンドラインはヒストリに追加しない
+setopt hist_ignore_dups
+
+# コマンドラインの先頭がスペースで始まる場合ヒストリに追加しない
+#setopt hist_ignore_space
+
+# ヒストリを呼び出してから実行する間に一旦編集できる状態になる
+setopt hist_verify
+
+# シェルが終了しても裏ジョブに HUP シグナルを送らないようにする
+setopt NO_hup
+
+# Ctrl+D では終了しないようになる（exit, logout などを使う）
+#setopt ignore_eof
+
+# コマンドラインでも # 以降をコメントと見なす
+#setopt interactive_comments
+
+# auto_list の補完候補一覧で、ls -F のようにファイルの種別をマーク表示
+setopt list_types
+
+# 内部コマンド jobs の出力をデフォルトで jobs -l にする
+setopt long_list_jobs
+
+# コマンドラインの引数で --prefix=/usr などの = 以降でも補完できる
+setopt magic_equal_subst
+
+# メールスプール $MAIL が読まれていたらワーニングを表示する
+#setopt mail_warning
+
+# ファイル名の展開でディレクトリにマッチした場合末尾に / を付加する
+setopt mark_dirs
+
+# 補完候補が複数ある時、一覧表示 (auto_list) せず、すぐに最初の候補を補完する
+setopt menu_complete
+
+# 複数のリダイレクトやパイプなど、必要に応じて tee や cat の機能が使われる
+setopt multios
+
+# ファイル名の展開で、辞書順ではなく数値的にソートされるようになる
+setopt numeric_glob_sort
+
+# コマンド名に / が含まれているとき PATH 中のサブディレクトリを探す
+#setopt path_dirs
+
+# 8 ビット目を通すようになり、日本語のファイル名などを見れるようになる
+setopt print_eightbit
+
+# 戻り値が 0 以外の場合終了コードを表示する
+#setopt print_exit_value
+
+# ディレクトリスタックに同じディレクトリを追加しないようになる
+#setopt pushd_ignore_dups
+
+# pushd を引数なしで実行した場合 pushd $HOME と見なされる
+#setopt pushd_to_home
+
+# rm * などの際、本当に全てのファイルを消して良いかの確認しないようになる
+#setopt rm_star_silent
+
+# rm_star_silent の逆で、10 秒間反応しなくなり、頭を冷ます時間が与えられる
+#setopt rm_star_wait
+
+# for, repeat, select, if, function などで簡略文法が使えるようになる
+setopt short_loops
+
+# デフォルトの複数行コマンドライン編集ではなく、１行編集モードになる
+#setopt single_line_zle
+
+# コマンドラインがどのように展開され実行されたかを表示するようになる
+#setopt xtrace
+
+# ファイルの最終行をプロンプトが上書きするのを抑制する
+#unsetopt PROMPT_CR
+###
+setopt INTERACTIVE_COMMENTS
+#setopt HIST_NO_STORE
+setopt autopushd
+
+
+# zsh が使うシェル変数のうちヒストリ（履歴機能）に関するもの
+HISTFILE=$HOME/var/.zsh-history       # 履歴をファイルに保存する
+HISTSIZE=1000000                      # メモリ内の履歴の数
+SAVEHIST=1000000                      # 保存される履歴の数
+setopt extended_history               # 履歴ファイルに時刻を記録
+function history-all { history -E 1 } # 全履歴の一覧を出力する
+setopt share_history                  # history を共有する / ファイルにかきこむ
+
+#
+# aliases
+#
+# コマンドに別名をつける alias の設定ファイルを読み込む
+#
+
+alias cvsd='sudo -u seesaa cvs'
+alias svnd='sudo -u seesaa -H svn'
+
+#
+# functions
+#
+# 複雑な機能を実現する関数 function の設定ファイルを読み込む
+#
+
+function sample () {}
+
+
+# wipe out dead screens
+if [ -f /usr/local/bin/screen ]; then
+  screen -q -wipe
+fi
+
+# for user
+#path
+export PATH=/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin/:~/local/bin:~/local/sbin:/usr/local/mysql/bin:/usr/local/apache/bin:$PATH
+
+# env
+export PAGER=less
+export LESSCHARSET=utf-8
+export LC_MESSAGES=C
+CVSROOT=$HOME/cvs; export CVSROOT
+SVNROOT=$HOME/svn; export SVNROOT
+
+MYSQL_PS1="mysql@`hostname -s`> "; export MYSQL_PS1
+

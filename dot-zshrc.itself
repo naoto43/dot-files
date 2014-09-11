@@ -4,6 +4,8 @@
 # loaded from .zshrc
 #
 
+echo "Loading $HOME/.zshrc.itself"
+
 #
 # PROMPT
 # 

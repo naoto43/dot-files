@@ -8,7 +8,7 @@ echo "Loading $HOME/.zshrc"
 # PROMPT
 # 
 if [ -d /sys/class/net/docker0 ] && [ ! -e /usr/bin/docker ]; then
-  _DOCKER=.docker
+  _DOCKER=.d
 fi
 
 PROMPT="[%n@%m$_DOCKER %4~ ] "

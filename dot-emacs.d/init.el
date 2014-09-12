@@ -13,7 +13,7 @@
 
 (setq load-path (append my-load-path system-load-path))
 
-(setenv "RUBYLIB" (concat (getenv "RUBYLIB") ":" (expand-file-name "~/.emacs.d/lib/ruby/site_ruby")))
+;;(setenv "RUBYLIB" (concat (getenv "RUBYLIB") ":" (expand-file-name "~/.emacs.d/lib/ruby/site_ruby")))
 (setenv "PATH"    (concat (getenv "PATH") ":" (expand-file-name "~/.emacs.d/bin")))
 
 ;;
@@ -143,15 +143,18 @@
 
 ;;
 ;; migemo
-;;
-;; [toona@toona ~/tmp/migemo-0.40 ] ./configure --prefix=~/.emacs.d --with-rubydir=~/.emacs.d/lib/ruby/site_ruby
-;;
-;; cent4 の 1.8.1 でうごきません。以下が必要
 ;; 
-;; yum remove ruby ruby-libs
-;; cd /etc/yum.repos.d/ && wget http://dev.centos.org/centos/4/CentOS-Testing.repo && yum --enablerepo=c4-testing install  ruby
+;; sudo rpm -Uvh ftp://fr.rpmfind.net/linux/fedora/linux/releases/19/Everything/x86_64/os/Packages/c/cmigemo-1.3-0.10.date20110227.fc19.1.x86_64.rpm
 ;;
-(load "migemo")
+
+(require 'migemo)
+(setq migemo-command "cmigemo")
+(setq migemo-options '("-q" "--emacs"))
+(setq migemo-dictionary "/usr/share/cmigemo/utf-8/migemo-dict")
+(setq migemo-user-dictionary nil)
+(setq migemo-regex-dictionary nil)
+(setq migemo-coding-system 'utf-8-unix)
+(migemo-init)
 
 ;;
 ;; svn
@@ -164,25 +167,6 @@
 ;;
 
 (load-library "magit")
-
-
-;;
-;; wanderlust
-;;
-;; apel,semi,flim,lsdb をインストールする
-;; wl インストール時には WL-CFG に apel,semi,flim のパスを追加した上で make すること
-;;
-
-(setq wl-load-path '("/usr/local/share/emacs/site-lisp/wl"
-                     "/usr/local/share/emacs/site-lisp/apel"
-                     "/usr/local/share/emacs/site-lisp/semi"
-                     "/usr/local/share/emacs/site-lisp/flim"
-                     "/usr/local/share/emacs/site-lisp/lsdb"
-                     ))
-(setq load-path (append load-path wl-load-path))
-(autoload 'mime-setup "mime-setup" t)
-(autoload 'wl "wl" "Wanderlust" t)
-(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 
 ;; ----------------------------------------------------------------------
 ;; if file bigin "#!" +x - Script with shebang line

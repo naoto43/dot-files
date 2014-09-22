@@ -330,3 +330,17 @@ SVNROOT=$HOME/svn; export SVNROOT
 
 MYSQL_PS1="mysql@`hostname -s`> "; export MYSQL_PS1
 
+# Docker
+DOCKERFILE_PATH=$HOME/src/dockerfile-dev/Dockerfile.update
+function _update_dockerfile() {
+    if [[ "$1" == ((sudo |)yum install|(vi*|emacs*|echo*)(/etc|*.conf))* ]] ; then
+	echo ok
+	echo "RUN $1" >> $DOCKERFILE_PATH
+    fi
+}
+
+autoload -U add-zsh-hook
+add-zsh-hook preexec _update_dockerfile
+
+
+

@@ -352,7 +352,7 @@ MYSQL_PS1="mysql@`hostname -s`> "; export MYSQL_PS1
 # Docker
 DOCKERFILE_PATH=$HOME/src/dockerfile-dev/Dockerfile.update
 function _update_dockerfile() {
-    if [[ "$1" == ((sudo |)yum install|(vi*|emacs*|echo*)(/etc|*.conf))* ]] ; then
+    if [[ "$1" == ((sudo |)yum (install|update)|(vi*|emacs*|echo*|chown*|chmod*)(/etc|*conf))* ]] ; then
 	echo "RUN $1" >> $DOCKERFILE_PATH
     fi
 }

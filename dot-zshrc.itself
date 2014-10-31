@@ -71,6 +71,16 @@ if [ -x /var/qmail/bin ]; then
 	path=($path /var/qmail/bin)
 fi
 
+# go
+if [-z /usr/local/go/bin ]; then
+	path=($path /usr/local/go/bin)
+        export GOROOT=/usr/local/go
+fi
+
+if [-z /var/seesaa/go/bin ]; then
+	path=($path /var/seesaa/go)
+        export GOROOT=/var/seesaa/go
+fi
 
 ### Select OS type
 

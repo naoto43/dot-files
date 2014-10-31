@@ -72,12 +72,12 @@ if [ -x /var/qmail/bin ]; then
 fi
 
 # go
-if [-z /usr/local/go/bin ]; then
+if [ -x /usr/local/go/bin ]; then
 	path=($path /usr/local/go/bin)
         export GOROOT=/usr/local/go
 fi
 
-if [-z /var/seesaa/go/bin ]; then
+if [ -x /var/seesaa/go/bin ]; then
 	path=($path /var/seesaa/go)
         export GOROOT=/var/seesaa/go
 fi

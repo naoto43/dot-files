@@ -78,7 +78,7 @@ if [ -x /usr/local/go/bin ]; then
 fi
 
 if [ -x /var/seesaa/go/bin ]; then
-	path=($path /var/seesaa/go)
+	path=($path /var/seesaa/go/bin)
         export GOROOT=/var/seesaa/go
 fi
 

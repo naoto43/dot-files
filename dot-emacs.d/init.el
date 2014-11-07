@@ -194,10 +194,32 @@
 ;;
 ;; for osx
 ;;
+
 (if (eq system-type 'darwin)
-    (keyboard-translate ?\C-h ?\C-?)
-    (setq ns-command-modifier (quote meta))
-    (setq ns-alternate-modifier (quote super)))
+(setq ns-command-modifier (quote meta))
+(setq ns-alternate-modifier (quote super))
+(global-set-key
+ [(control J)]
+ (lambda ()
+   (interactive)
+   (call-process "osascript" nil t nil "-e" "tell application \"System Events\" to key code 104")))
+(global-set-key
+ [(control K)]
+ (lambda ()
+   (interactive)
+   (call-process "osascript" nil t nil "-e" "tell application \"System Events\" to key code 104")))
+(global-set-key
+ [(control L)]
+ (lambda ()
+   (interactive)
+   (call-process "osascript" nil t nil "-e" "tell application \"System Events\" to key code 102")))
+(global-set-key
+ [(control :)]
+ (lambda ()
+   (interactive)
+   (call-process "osascript" nil t nil "-e" "tell application \"System Events\" to key code 102")))
+)
+
 
 ;;
 ;; die, when this file have wrong.

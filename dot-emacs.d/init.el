@@ -98,6 +98,7 @@
 	  '(lambda ()
              (require 'perl-debug)
 ;;             (perl-debug-set-coding-system)
+	     (setq perl-debug-command-name "~/.emacs.d/perl-debug.sh")
              (define-key cperl-mode-map "\C-cc" 'perl-debug-lint)
 	     (define-key cperl-mode-map "\C-cd" 'perl-debug)))
 

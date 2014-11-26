@@ -14,7 +14,7 @@
 (setq load-path (append my-load-path system-load-path))
 
 ;;(setenv "RUBYLIB" (concat (getenv "RUBYLIB") ":" (expand-file-name "~/.emacs.d/lib/ruby/site_ruby")))
-(setenv "PATH"    (concat (getenv "PATH") ":" (expand-file-name "~/.emacs.d/bin")))
+(setenv "PATH"    (concat (expand-file-name "~/.emacs.d") ":" (getenv "PATH") ))
 
 ;;
 ;; lang

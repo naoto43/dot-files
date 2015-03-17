@@ -4,10 +4,10 @@
 
 echo "Loading $HOME/.zshrc"
 
-if [ -e /usr/bin/git -o -e /usr/local/bin/git ]; then
+if [ -e /usr/bin/git -o -e /usr/local/bin/git -e $HOME/.dot-files ]; then
   cd $HOME/.dot-files
   echo update zshrc
-  git checkout . && git pull 
+  #git checkout . && git pull 
   cd $HOME
 fi
 

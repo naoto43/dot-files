@@ -117,8 +117,10 @@ export EDITOR=vi
 export LANG=ja_JP.UTF-8
 #export LANG=C
 #export LANGUAGE = ja_JP
-export LC_CTYPE=UTF-8
-export LC_ALL=C
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+#export LC_CTYPE=UTF-8
+#export LC_ALL=C
 
 # man path
 export MANPATH="/usr/share/man:/usr/X11R6/man:/usr/local/man:/var/qmail/man:$HOME/man:."

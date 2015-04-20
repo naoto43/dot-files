@@ -323,7 +323,7 @@ alias svnd='sudo -u seesaa -H svn'
 # 複雑な機能を実現する関数 function の設定ファイルを読み込む
 #
 
-function install-emacs () {
+function install-emacs-cmd () {
     cd /tmp
     EMACS_VER=24.3
     curl -O http://ftp.gnu.org/pub/gnu/emacs/emacs-${EMACS_VER}.tar.gz
@@ -334,7 +334,7 @@ function install-emacs () {
     sudo make install
 }
 
-function install-cmigemo() {
+function install-cmigemo-cmd() {
     cd /tmp
     sudo yum install -y nkf
     git clone https://github.com/koron/cmigemo

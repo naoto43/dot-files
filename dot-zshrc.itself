@@ -345,7 +345,7 @@ function install-cmigemo() {
     sudo make gcc-install
 }
 
-function publickey-install-cmd() {
+function install-publickey-cmd() {
     echo 'mkdir -p ~/.ssh && echo "ssh-dss AAAAB3NzaC1kc3MAAACBAP1TLmw3x4inTcmKfW/8sOb8EeUs6pMxhl5/rzFsuh/p8wU3o8KVDeaHfCaxuiddMEUsZLYxMtmu7yFTDP/UKLLyOCM388/SUJBnlCT2HNQYk8IAjkV+649D3bEBDzR7kn08t2J9uoqf8Gn2OscFbeswUuQ78afViXSY8XdNgPArAAAAFQDMF/NW4FnFLMWOvLzpmG310BUuVwAAAIBzV6YclKZneyJhIkWv4xHV1DeRf3OAgyi6ulWq7fTRRU3bZOhImZwwkeSKmVPtzYIoQQtzSOTqPvH3lJerv3ErdA9ak98YpkkEIbWfvZJx4IEWTE8zjAc6Qjaa3MIGCgvRiEhJNbK1YzkkmJflxi3lUheiB7Wxr8G2JbpRYBqYlQAAAIEAlu+jOt/z2V/No53f3VmLSoCdC2tppZEA6N9ommf+yQfVS5eVpCG+n9sD6Yld/tWlBV4iVaunJlMMxSxj4ixKHNiw7+ankevc1g9Wmvbn3zs4gIyN2tpkI3FfWKWkWyGjFqhPQJuSivQGu4b0fXHcitGTnjfX50O/kOzEp/F9QfI= toona@toona.dev" >> ~/.ssh/authorized_keys'
 }
 

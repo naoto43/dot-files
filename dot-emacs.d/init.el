@@ -83,17 +83,27 @@
 (add-hook 'yahtml-mode-hook
 	  #'(lambda ()
 	      (auto-fill-mode -1)))
-
+(setq yahtml-kanji-code 4)
 
 ;;
 ;; cperl-mode
 ;;
 
+(setq-default tab-width 4 indent-tabs-mode nil)
 (setq cperl-indent-parens-as-block t)
 (setq cperl-close-paren-offset -4)
 (setq cperl-indent-level 4)
 (setq cperl-label-offset -4)
 (setq cperl-continued-statement-offset 4)
+
+
+;; (setq cperl-indent-level 4
+;;          cperl-close-paren-offset -4
+;;          cperl-continued-statement-offset 4
+;;          cperl-indent-parens-as-block t
+;;          cperl-tab-always-indent t)
+
+;;(setq-default tab-width 4 indent-tabs-mode nil)
 (add-hook 'cperl-mode-hook
 	  '(lambda ()
              (require 'perl-debug)

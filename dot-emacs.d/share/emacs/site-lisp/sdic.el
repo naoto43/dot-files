@@ -97,6 +97,10 @@
 (defvar sdic-left-margin 2 "*Left margin of contents.
 説明文の左側の余白幅")
 
+;; fix for emacs 26
+(if (string-match "26" emacs-version)
+    (setq default-fill-column (default-value 'fill-column)))
+
 (defvar sdic-fill-column default-fill-column "*Right edge of contents.
 説明文を整形する幅")
 

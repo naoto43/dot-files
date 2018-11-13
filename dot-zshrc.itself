@@ -315,8 +315,7 @@ setopt share_history                  # history を共有する / ファイル�
 # コマンドに別名をつける alias の設定ファイルを読み込む
 #
 
-alias cvsd='sudo -u seesaa cvs'
-alias svnd='sudo -u seesaa -H svn'
+alias ll='ls -l'
 
 #
 # functions

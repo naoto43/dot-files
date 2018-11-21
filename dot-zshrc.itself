@@ -84,6 +84,11 @@ if [ -x /var/seesaa/go/bin ]; then
         export GOROOT=/var/seesaa/go
 fi
 
+# google cloud sdk  (for mac)
+if [ -f '/Users/toona/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/toona/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/toona/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/toona/google-cloud-sdk/completion.zsh.inc'; fi
+
+
 ### Select OS type
 
 case $OSTYPE {

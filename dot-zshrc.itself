@@ -322,6 +322,11 @@ setopt share_history                  # history を共有する / ファイル�
 
 alias ll='ls -l'
 
+if [ `which hub` ]; then
+   eval "$(hub alias -s)"
+fi     
+
+
 #
 # functions
 #

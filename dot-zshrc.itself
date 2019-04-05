@@ -37,6 +37,7 @@ path=($path $HOME/bin)
 
 path=($path /usr/local/sysutil)
 path=($path /usr/ucb /usr/etc)	# for SunOS
+path=($path  ~/Library/Python/3.7/bin)
 
 # apache
 if [ -x /usr/local/apache/bin ]; then
@@ -366,7 +367,7 @@ fi
 
 # for user
 #path
-export PATH=/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin/:~/local/bin:~/local/sbin:/usr/local/mysql/bin:/usr/local/apache/bin:$PATH
+export PATH=/sbin:/usr/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/X11R6/bin/:~/local/bin:~/local/sbin:/usr/local/mysql/bin:/usr/local/apache/bin:/usr/local/opt/mysql-client/bin:$PATH
 
 # env
 export PAGER=less

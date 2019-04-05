@@ -8,6 +8,13 @@
 ;; lib path
 ;;
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (defvar system-load-path load-path)
 (setq my-load-path '("~/.emacs.d/share/emacs/site-lisp"))
 
@@ -66,10 +73,11 @@
                                     (cons "\\.html$" 'yahtml-mode)
                                     (cons "\\.inc$" 'yahtml-mode)
                                     (cons "\\.js$" 'js2-mode)
+                                    (cons  "\\.php$" 'php-mode)
                                     )
                               auto-mode-alist))
 
-
+(autoload 'php-mode "php-mode" "php editing mode" t)
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
